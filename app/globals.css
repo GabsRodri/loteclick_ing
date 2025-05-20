@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;              /* Blanco */
+    --foreground: 222 47% 11%;            /* Azul navy profundo */
+    --primary: 222 47% 30%;               /* Azul navy profesional */
+    --primary-foreground: 0 0% 98%;       /* Blanco */
+    --secondary: 210 20% 96%;             /* Gris azulado claro */
+    --secondary-foreground: 222 47% 11%;  /* Navy */
+    --muted: 210 16% 93%;
+    --muted-foreground: 215 20% 50%;
+    --accent: 210 20% 94%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 222 47% 11%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+    --primary: 222 47% 90%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 222 47% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 240 4.9% 83.9%;
+  }
+}
+
+html.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+
+/* Scrollbar base */
+.scrollable::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 4px;
+}
+
+html.dark .scrollable::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html.dark .scrollable::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+html.dark .scrollable::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+/* Modo claro */
+.resizable::-webkit-resizer {
+  background-color: #f1f1f1;
+}
+
+/* Modo oscuro */
+html.dark .resizable::-webkit-resizer {
+  background-color: #1f1e1e;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  a {
+    @apply text-primary hover:underline;
+  }
+}
