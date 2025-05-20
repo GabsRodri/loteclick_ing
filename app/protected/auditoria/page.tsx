@@ -209,25 +209,22 @@ const handleRestore = async (auditoria: Auditoria) => {
   const totalPages = Math.ceil(filteredAuditoriaData.length / itemsPerPage);
 
   return (
-  <main style={{ padding: "20px", minHeight: "100vh", width: "100%", boxSizing: "border-box" }}>
+  <div className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-6 mt-5 px-4">
     {/* Notificación */}
     {mensaje && (
       <div
-        className={`mb-6 col-span-full p-3 text-sm rounded-md text-background ${mensaje.tipo === "success" ? "bg-green-600 dark:bg-green-950" : "bg-red-600 dark:bg-red-950"
-          }`}
+        className={`col-span-full p-3 text-sm rounded-md text-background ${mensaje.tipo === "success" ? "bg-green-600 dark:bg-green-950" : "bg-red-600 dark:bg-red-950"}`}
       >
         {mensaje.texto}
       </div>
     )}
 
-    {/* Contenedor principal */}
-    <div className="p-4 sm:p-6 md:p-8 border rounded-lg shadow-md bg-background dark:border-gray-700">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-primary dark:text-gray-100">Historial de Cambios</h2>
-      </div>
+    {/* Panel izquierdo */}
+    <div className="p-6 border rounded-lg shadow-md bg-background space-y-4 w-full max-w-sm dark:border-gray-700">
+      <h2 className="text-xl font-semibold text-primary dark:text-gray-100">Historial de Cambios</h2>
 
       {/* Filtros */}
-      <div className="border p-3 rounded-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-background shadow-sm dark:border-gray-700">
+      <div className="border p-3 rounded-md grid sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-background shadow-sm dark:border-gray-700">
         <div>
           <label className="block mb-1 font-medium text-sm dark:text-gray-100">Usuario</label>
           <input
@@ -299,7 +296,6 @@ const handleRestore = async (auditoria: Auditoria) => {
                       </button>
                     )}
                   </td>
-
                   <td className="border px-1 py-1 border-gray-300 dark:border-gray-700">
                     {auditoria.operacion}
                   </td>
@@ -346,6 +342,6 @@ const handleRestore = async (auditoria: Auditoria) => {
         </button>
       </div>
     </div>
-  </main>
+  </div>
 );
 }
