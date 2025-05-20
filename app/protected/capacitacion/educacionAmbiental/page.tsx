@@ -29,6 +29,7 @@ export default function CapacitacionPage() {
   };
 
   return (
+    <div className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-6 mt-5 px-4">
     <div className="font-sans text-primary dark:text-gray-100 bg-background min-h-screen">
       <header className="h-[300px] bg-cover bg-center flex flex-col justify-center items-center text-white text-center" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1713002603663-373cdf5c30cd?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGFpc2FqZSUyMGRlJTIwYXJib2x8ZW58MHx8MHx8fDA%3D)' }}>
         <h1 className="text-4xl font-bold px-4">Digitalización y sostenibilidad ambiental</h1>
@@ -105,5 +106,6 @@ export default function CapacitacionPage() {
         </div>
       </main>
     </div>
+        </div>
   );
 }
