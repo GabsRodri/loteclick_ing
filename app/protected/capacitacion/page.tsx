@@ -166,7 +166,7 @@ export default function CapacitacionPage() {
     };
 
     return (
-        <div className="max-w-screen-xl mx-auto px-6 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-6 mt-5 px-4">
             <div className="grid md:grid-cols-5 gap-8">
 
                 {/* Columna izquierda: Texto, PDF, Imágenes, Mensaje */}
