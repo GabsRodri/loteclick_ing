@@ -74,10 +74,27 @@ export default function ClientProtectedLayout({
   ];
 
   return (
-  <div className="flex h-screen">
-    {/* Sidebar (Overlay en móvil, fijo en desktop) */}
-    {sidebarOpen && (
-      <aside className="fixed inset-y-0 left-0 z-40 w-64 bg-background border-r text-muted-foreground p-4 overflow-y-auto dark:border-gray-700 md:static md:w-56 md:block">
+  <div className="h-screen flex flex-col">
+    {/* Header */}
+    <header className="p-4 border-b border-primary/40 flex justify-between items-center dark:border-gray-700">
+      <button
+        className="md:hidden bg-primary-foreground dark:text-gray-100 dark:bg-black dark:border-gray-700 dark:hover:bg-zinc-800"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+        aria-label="Menú"
+      >
+        <Menu className="text-primary" />
+      </button>
+      <h1 className="text-lg text-primary font-bold dark:text-gray-100">{rol}</h1>
+    </header>
+
+    {/* Contenido con Sidebar y Main */}
+    <div className="flex flex-1 overflow-hidden">
+      {/* Sidebar */}
+      <aside
+        className={`${
+          sidebarOpen ? "block" : "hidden"
+        } md:block w-56 bg-background border-r text-muted-foreground p-4 overflow-y-auto dark:border-gray-700`}
+      >
         <nav className="space-y-2">
           <h2 className="mb-4 text-lg font-bold text-primary text-center dark:text-gray-100">Módulos</h2>
           {modulos.map((modulo) => {
@@ -108,21 +125,9 @@ export default function ClientProtectedLayout({
           })}
         </nav>
       </aside>
-    )}
 
-    {/* Contenido principal */}
-    <div className="flex-1 flex flex-col">
-      <header className="p-4 border-b border-primary/40 flex justify-between items-center dark:border-gray-700">
-        <button
-          className="md:hidden bg-primary-foreground dark:text-gray-100 dark:bg-black dark:border-gray-700 dark:hover:bg-zinc-800"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          aria-label="Menú"
-        >
-          <Menu className="text-primary" />
-        </button>
-        <h1 className="text-lg text-primary font-bold dark:text-gray-100">{rol}</h1>
-      </header>
-      <main className="p-4 overflow-y-auto flex-1">{children}</main>
+      {/* Main Content */}
+      <main className="flex-1 p-4 overflow-y-auto">{children}</main>
     </div>
   </div>
 );
