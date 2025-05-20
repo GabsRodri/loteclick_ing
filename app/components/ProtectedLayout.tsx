@@ -74,57 +74,56 @@ export default function ClientProtectedLayout({
   ];
 
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      {sidebarOpen && (
-        <aside className="w-56 bg-background border text-muted-foreground h-screen p-4 dark:border-gray-700 overflow-y-auto">
-          <nav className="space-y-2">
+  <div className="flex h-screen">
+    {/* Sidebar (Overlay en móvil, fijo en desktop) */}
+    {sidebarOpen && (
+      <aside className="fixed inset-y-0 left-0 z-40 w-64 bg-background border-r text-muted-foreground p-4 overflow-y-auto dark:border-gray-700 md:static md:w-56 md:block">
+        <nav className="space-y-2">
+          <h2 className="mb-4 text-lg font-bold text-primary text-center dark:text-gray-100">Módulos</h2>
+          {modulos.map((modulo) => {
+            if (modulo.rolesPermitidos && !modulo.rolesPermitidos.includes(rol)) return null;
+            return (
+              <div key={modulo.id}>
+                <button
+                  className="w-full text-left font-semibold hover:text-foreground dark:text-gray-100 dark:hover:text-zinc-700"
+                  onClick={() => toggleMenu(modulo.id)}
+                >
+                  {modulo.nombre}
+                </button>
+                {openMenus[modulo.id] && (
+                  <div className="pl-1 mt-1 space-y-1 text-sm border-l-2 border-muted-foreground dark:border-gray-600 ml-2">
+                    {modulo.rutas.map((ruta) => (
+                      <Link
+                        key={ruta.href}
+                        href={ruta.href}
+                        className="block pl-2 hover:underline text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-zinc-700"
+                      >
+                        {ruta.nombre}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </nav>
+      </aside>
+    )}
 
-            <h2 className="mb-4 text-lg font-bold text-primary text-center dark:text-gray-100">Módulos</h2>
-
-            {modulos.map((modulo) => {
-              // Verifica si el rol tiene permiso
-              if (modulo.rolesPermitidos && !modulo.rolesPermitidos.includes(rol)) return null;
-
-              return (
-                <div key={modulo.id}>
-                  <button
-                    className="w-full text-left font-semibold hover:text-foreground dark:text-gray-100 dark:hover:text-zinc-700"
-                    onClick={() => toggleMenu(modulo.id)}
-                  >
-                    {modulo.nombre}
-                  </button>
-
-                  {openMenus[modulo.id] && (
-                    <div className="pl-1 mt-1 space-y-1 text-sm border-l-2 border-muted-foreground dark:border-gray-600 ml-2">
-                      {modulo.rutas.map((ruta) => (
-                        <Link
-                          key={ruta.href}
-                          href={ruta.href}
-                          className="block pl-2 hover:underline text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-zinc-700"
-                        >
-                          {ruta.nombre}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </nav>
-        </aside>
-      )}
-
-      {/* Contenido principal */}
-      <div className="flex-1">
-        <header className="p-4 border-b border-primary/40 flex justify-between items-center dark:border-gray-700">
-          <button className="bg-primary-foreground dark:text-gray-100 dark:bg-black dark:border-gray-700 dark:hover:bg-zinc-800" onClick={() => setSidebarOpen(!sidebarOpen)} aria-label="Menú">
-            <Menu className="text-primary" />
-          </button>
-          <h1 className="text-lg text-primary font-bold dark:text-gray-100">{rol}</h1>
-        </header>
-        <main className="p-4">{children}</main>
-      </div>
+    {/* Contenido principal */}
+    <div className="flex-1 flex flex-col">
+      <header className="p-4 border-b border-primary/40 flex justify-between items-center dark:border-gray-700">
+        <button
+          className="md:hidden bg-primary-foreground dark:text-gray-100 dark:bg-black dark:border-gray-700 dark:hover:bg-zinc-800"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          aria-label="Menú"
+        >
+          <Menu className="text-primary" />
+        </button>
+        <h1 className="text-lg text-primary font-bold dark:text-gray-100">{rol}</h1>
+      </header>
+      <main className="p-4 overflow-y-auto flex-1">{children}</main>
     </div>
-  );
+  </div>
+);
 }
