@@ -220,7 +220,7 @@ const handleRestore = async (auditoria: Auditoria) => {
     )}
 
     {/* Panel izquierdo */}
-    <div className="p-6 border rounded-lg shadow-md bg-background space-y-4 w-full max-w-sm dark:border-gray-700">
+    <div className="p-6 border rounded-lg shadow-md bg-background space-y-4 w-full dark:border-gray-700">
       <h2 className="text-xl font-semibold text-primary dark:text-gray-100">Historial de Cambios</h2>
 
       {/* Filtros */}
