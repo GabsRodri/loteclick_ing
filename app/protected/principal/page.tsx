@@ -89,6 +89,7 @@ export default async function DashboardPage() {
     </footer>
   </section>
 );
+}
 
 function Card({ title, link, icon }: { title: string; link: string; icon: React.ReactNode }) {
   return (
