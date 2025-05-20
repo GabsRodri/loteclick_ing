@@ -24,6 +24,7 @@ export default async function DashboardPage() {
 
 return (
   <div className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-6 mt-5 px-4">
+    <section className="w-full min-h-screen bg-gradient-to-br from-background to-muted/40 py-8 px-4 sm:px-6 lg:px-12">
     <div className="flex flex-col items-center text-center mb-8">
       {/* Logo fuera del cuadro */}
       <div className="flex-shrink-0 mb-4">
@@ -89,6 +90,7 @@ return (
       <p>Contacto: contacto@loteclick.com | Tel: +57 300 123 4567</p>
       <p>© {new Date().getFullYear()} LoteClick. Todos los derechos reservados.</p>
     </footer>
+      </section>
   </div>
 );
 }
